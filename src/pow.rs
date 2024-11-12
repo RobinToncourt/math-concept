@@ -10,7 +10,7 @@ macro_rules! pow_impl {
             type Output = $t;
             #[inline]
             fn pow(self, rhs: $rhs) -> $t {
-                ($method)(self, <$desired_rhs>::from(rhs))
+                ($method)(self, rhs as $desired_rhs)
             }
         }
 
@@ -18,7 +18,7 @@ macro_rules! pow_impl {
             type Output = $t;
             #[inline]
             fn pow(self, rhs: &'a $rhs) -> $t {
-                ($method)(self, <$desired_rhs>::from(*rhs))
+                ($method)(self, *rhs as $desired_rhs)
             }
         }
 
@@ -26,7 +26,7 @@ macro_rules! pow_impl {
             type Output = $t;
             #[inline]
             fn pow(self, rhs: $rhs) -> $t {
-                ($method)(*self, <$desired_rhs>::from(rhs))
+                ($method)(*self, rhs as $desired_rhs)
             }
         }
 
@@ -34,15 +34,31 @@ macro_rules! pow_impl {
             type Output = $t;
             #[inline]
             fn pow(self, rhs: &'a $rhs) -> $t {
-                ($method)(*self, <$desired_rhs>::from(*rhs))
+                ($method)(*self, *rhs as $desired_rhs)
             }
         }
     };
 }
 
 pow_impl!(u8, u8, u32, u8::pow);
+pow_impl!(u16, u16, u32, u16::pow);
+pow_impl!(u32, u32, u32, u32::pow);
+pow_impl!(u64, u64, u32, u64::pow);
+pow_impl!(u128, u128, u32, u128::pow);
+pow_impl!(i8, i8, u32, i8::pow);
+pow_impl!(i16, i16, u32, i16::pow);
+pow_impl!(i32, i32, u32, i32::pow);
+pow_impl!(i64, i64, u32, i64::pow);
+pow_impl!(i128, i128, u32, i128::pow);
+pow_impl!(f32, f32, f32, f32::powf);
+pow_impl!(f64, f64, f64, f64::powf);
+
+/*
+pow_impl!(u8, u8, u32, u8::pow);
 pow_impl!(u8, u16, u32, u8::pow);
 pow_impl!(u8, u32, u32, u8::pow);
+pow_impl!(u8, u64, u32, u8::pow);
+pow_impl!(u8, u128, u32, u8::pow);
 pow_impl!(i8, u8, u32, i8::pow);
 pow_impl!(i8, u16, u32, i8::pow);
 pow_impl!(i8, u32, u32, i8::pow);
@@ -93,3 +109,4 @@ pow_impl!(f64, i32, i32, f64::powi);
 pow_impl!(f32, f32, f32, f32::powf);
 pow_impl!(f64, f32, f64, f64::powf);
 pow_impl!(f64, f64, f64, f64::powf);
+*/
