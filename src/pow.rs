@@ -10,7 +10,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: $desired_rhs) -> $t {
                 ($method)(self, rhs as $rhs)
             }
@@ -20,7 +19,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: &'a $desired_rhs) -> $t {
                 ($method)(self, *rhs as $rhs)
             }
@@ -30,7 +28,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: $desired_rhs) -> $t {
                 ($method)(*self, rhs as $rhs)
             }
@@ -40,7 +37,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: &'a $desired_rhs) -> $t {
                 ($method)(*self, *rhs as $rhs)
             }
@@ -52,7 +48,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: $desired_rhs) -> $t {
                 ($method)(self as $new_type, rhs as $rhs) as $t
             }
@@ -62,7 +57,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: &'a $desired_rhs) -> $t {
                 ($method)(self as $new_type, *rhs as $rhs) as $t
             }
@@ -72,7 +66,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: $desired_rhs) -> $t {
                 ($method)(*self as $new_type, rhs as $rhs) as $t
             }
@@ -82,7 +75,6 @@ macro_rules! pow_impl {
             type Output = $t;
 
             #[inline]
-
             fn pow(self, rhs: &'a $desired_rhs) -> $t {
                 ($method)(*self as $new_type, *rhs as $rhs) as $t
             }
