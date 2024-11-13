@@ -14,7 +14,7 @@ macro_rules! sqrt_impl {
                 (self as f64).sqrt() as $t
             }
         }
-    }
+    };
 }
 
 sqrt_impl!(u8);
